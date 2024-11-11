@@ -1,4 +1,4 @@
 ## Пример простой архитектуры микросервисного сайта
-### Fronend: JavaScript+bootstrap, server: apache
+### Fronend: JavaScript+html+css, server: apache
 ### Backend: Django
 ### DB: MySql
