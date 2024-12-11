@@ -1,0 +1,10 @@
+asgiref==3.8.1
+cffi==1.17.1
+cryptography==43.0.3
+Django==5.1.1
+my-sql-library==0.1.1
+pycparser==2.22
+PyMySQL==1.1.1
+sqlparse==0.5.1
+tzdata==2024.1
+python-dotenv==1.0.1

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>16x16 Grid with Control Buttons</title>
+    <link rel="stylesheet" href="grid.css">
+</head>
+<body>
+    <div class="container">
+        <div>
+            <h2>Отправить отчет</h2>
+            <form id="reportForm" class="report">
+                <input type="text" id="reportTitle" name="reportTitle" placeholder="Название отчета" required>
+                <button type="submit" id="send_report">Отправить отчет</button>
+            </form>
+        
+        
+        <div id="report_div">
+
+
+        </div>
+
+        </div>
+
+
+        <div class="grid" id="grid"></div>
+        <div class="controls">
+            <button class="btn up">⬆️</button>
+            <div class="middle-buttons">
+                <button class="btn left">⬅️</button>
+                <button class="btn center">GRAB</button>
+                <button class="btn right">➡️</button>
+            </div>
+            <button class="btn down">⬇️</button>
+        </div>
+    </div>
+
+    <script src="controls.js"></script>
+    <script src="Grid.js"></script>
+</body>
+</html>

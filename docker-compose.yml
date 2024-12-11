@@ -1,0 +1,54 @@
+services:
+  db:
+    image: mysql:9.1.0
+    restart: always
+    hostname: db
+    ports:
+      - "3306:33060"
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+      MYSQL_DATABASE: ${MYSQL_DATABASE}
+      MYSQL_USER: ${MYSQL_USER}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+    volumes:
+      - ./db_data:/var/lib/mysql
+    networks:
+      - nett
+    healthcheck:
+      test: mysqladmin ping -u root --password=admin
+      interval: 5s
+      timeout: 3s
+      retries: 5
+      start_period: 3s
+  website:
+    hostname: website
+    build:
+      context: frontend/
+      dockerfile: Dockerfile
+    ports:
+      - "8080:80"
+    networks:
+      - nett
+    volumes:
+      - ./frontend:/usr/share/nginx/html
+    depends_on:
+      - python
+  python:
+    hostname: python
+    build:
+      context: backend/
+      dockerfile: Dockerfile
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./backend:/backend
+    networks:
+      - nett
+    depends_on:
+      db:
+        condition: service_healthy
+
+
+networks:
+  nett:
+    driver: bridge
