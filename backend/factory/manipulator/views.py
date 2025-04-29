@@ -5,32 +5,29 @@ import sys
 import json
 from .models import Report
 from datetime import datetime
-from django.views.decorators.csrf import csrf_exempt
 from django.core.serializers import serialize
 from .classes.Grid import factory_grid
 from .classes.Manipulator import manipulator
 
 
-@csrf_exempt
+
 def move(request):
     data = json.loads(request.body)
     manipulator.move(data['command'])
     return HttpResponse('', status=200)
 
 
-@csrf_exempt
+
 def grab(request):
     manipulator.grab()
     return HttpResponse('', status=200)
 
 
-@csrf_exempt
 def load_grid(request):
     data_string = grid_state_to_string(factory_grid)
     return JsonResponse({'data': data_string})
 
 
-@csrf_exempt
 def load_save(request):
     data = json.loads(request.body)['name']
     print(data, file=sys.stderr)
@@ -39,7 +36,6 @@ def load_save(request):
     return HttpResponse('', status=200)
 
 
-@csrf_exempt
 def send_report(request):
     data = json.loads(request.body)
     data_string = grid_state_to_string(factory_grid)
@@ -57,7 +53,6 @@ def send_report(request):
         return HttpResponse('', status=400)
 
 
-@csrf_exempt
 def get_reports(request):
     reports = Report.objects.all()
     reports_json = serialize('json', reports, fields=('name', 'text'))
