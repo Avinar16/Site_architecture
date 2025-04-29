@@ -13,6 +13,7 @@ SECRET_KEY = os.getenv("DJANGO_SECRET")
 DEBUG = True
 
 ALLOWED_HOSTS = ['127.0.0.1', '0.0.0.0', 'localhost']
+CSRF_TRUSTED_ORIGINS = ['http://127.0.0.1', 'http://0.0.0.0', 'http://localhost']
 
 # Application definition
 
@@ -58,8 +59,7 @@ WSGI_APPLICATION = 'factory.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
-
-# Доделать
+    
 DATABASES = {
     'default':
         {'ENGINE': 'django.db.backends.mysql',
